@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   description: "Blog website template",
 };
 
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProvider } from "@/components/common/theme-provider";
 
 export default function RootLayout({
   children,
