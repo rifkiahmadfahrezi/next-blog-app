@@ -1,13 +1,17 @@
 
 import { Navbar } from "@/components/common/navbar"
 import Infobar from "@/components/common/infobar"
+import { Footer } from "@/components/common/footer"
 
 const PublicLayout = ({ children } : { children : React.ReactNode }) => {
   return (
    <> 
       <Infobar />
       <Navbar />
-      {children}
+      <main className="min-h-svh">
+        {children}
+      </main>
+      <Footer />
    </>
   )
 }
