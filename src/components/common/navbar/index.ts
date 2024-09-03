@@ -11,11 +11,11 @@ export const navbarLinks = [
       href: '/blogs',
    },
    {
-      label: 'News',
+      label: 'Podcast',
       href: '/#',
    },
    {
-      label: 'Podcast',
+      label: 'Resources',
       href: '/#',
    },
 ]
