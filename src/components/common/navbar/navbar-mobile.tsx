@@ -50,10 +50,20 @@ const NavbarMobile = () => {
                         </li>
                      ))}
                         <li>
+                           <Button 
+                              variant={'outline'}
+                              asChild
+                              className='w-full'  >
+                              <Link href={'/sign-in'} >
+                                 Sign In
+                              </Link>
+                           </Button>
+                        </li>
+                        <li>
                            <Button asChild
                               className='w-full'  >
-                              <Link href={'/contact'} >
-                                 Contact Us
+                              <Link href={'/sign-up'} >
+                                 Sign Up
                               </Link>
                            </Button>
                         </li>

@@ -40,11 +40,26 @@ const Navbar : React.FC = () => {
                   ))}
                </ul>
 
-               <Button asChild >
-                  <Link href={'/contact'} >
-                     Contact Us
-                  </Link>
-               </Button>
+               <ul className="flex gap-2 items-center">
+                  <li>
+                     <Button 
+                        variant={'outline'}
+                        asChild
+                        className='w-full'  >
+                        <Link href={'/sign-in'} >
+                           Sign In
+                        </Link>
+                     </Button>
+                  </li>
+                  <li>
+                     <Button asChild
+                        className='w-full'  >
+                        <Link href={'/sign-up'} >
+                           Sign Up
+                        </Link>
+                     </Button>
+                  </li>
+               </ul>
             </nav>
             <div className="block md:hidden">
                <NavbarMobile />
