@@ -6,20 +6,23 @@ async function main() {
       where: { name: 'admin' },
       update: {},
       create: {
+         id: 'ADMIN',
          name: 'admin',
-      }
+      },
    })
    const authorRole = await prisma.role.upsert({
       where: { name: 'author' },
       update: {},
       create: {
+         id: 'AUTHOR',
          name: 'author',
-      }
+      },
    })
    const userRole = await prisma.role.upsert({
       where: { name: 'user' },
       update: {},
       create: {
+         id: 'USER',
          name: 'user',
       }
    })
