@@ -1,4 +1,4 @@
-
+import React from "react"
 import { Navbar } from "@/components/common/navbar"
 import Infobar from "@/components/common/infobar"
 import { Footer } from "@/components/common/footer"

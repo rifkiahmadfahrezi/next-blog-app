@@ -9,7 +9,9 @@ export const metadata: Metadata = {
   description: "Blog website template",
 };
 
+import React from "react";
 import { ThemeProvider } from "@/components/common/theme-provider";
+import ProgressbarProvider from "@/components/common/progressbar-provider";
 
 export default function RootLayout({
   children,
@@ -30,7 +32,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
           >
-          {children}
+          <ProgressbarProvider>
+            {children}
+          </ProgressbarProvider>
         </ThemeProvider>
       </body>
     </html>
