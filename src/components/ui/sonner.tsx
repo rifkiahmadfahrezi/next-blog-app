@@ -1,5 +1,6 @@
 "use client"
 
+import React from "react"
 import { useTheme } from "next-themes"
 import { Toaster as Sonner } from "sonner"
 
@@ -10,6 +11,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
 
   return (
     <Sonner
+      position="top-right"
       theme={theme as ToasterProps["theme"]}
       className="toaster group"
       toastOptions={{
@@ -21,6 +23,7 @@ const Toaster = ({ ...props }: ToasterProps) => {
             "group-[.toast]:bg-primary group-[.toast]:text-primary-foreground",
           cancelButton:
             "group-[.toast]:bg-muted group-[.toast]:text-muted-foreground",
+          error: "group-[.toaster]:border group-[.toaster]border-destructive group-[.toaster]text-red-500"
         },
       }}
       {...props}
