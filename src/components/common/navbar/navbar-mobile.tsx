@@ -12,6 +12,7 @@ import {
    SheetContent,
    SheetTrigger,
  } from "@/components/ui/sheet"
+ import UserDropdown from '../user-dropdown'
  
 
 const NavbarMobile = () => {
@@ -29,49 +30,51 @@ const NavbarMobile = () => {
                />
          </Link>
 
-         <Sheet>
-            <SheetTrigger asChild >
-               <Button variant={'ghost'} size={'icon'} >
-                  <MenuIcon />
-               </Button>
-            </SheetTrigger>
-            <SheetContent side={'left'} >
-               <nav className="py-10">
-                  <ul className='flex flex-col w-full items-center gap-5' >
-                     {navbarLinks.map((link) => (
-                        <li key={link.href} className='w-full' >
-                           <Button asChild
-                              className='w-full' 
-                              variant={isActive(pathname, link.href) ? 'outline' : 'ghost'} >
-                              <Link href={link.href} >
-                                 {link.label}
-                              </Link>
-                           </Button>
-                        </li>
-                     ))}
-                        <li>
-                           <Button 
-                              variant={'outline'}
-                              asChild
-                              className='w-full'  >
-                              <Link href={'/sign-in'} >
-                                 Sign In
-                              </Link>
-                           </Button>
-                        </li>
-                        <li>
-                           <Button asChild
-                              className='w-full'  >
-                              <Link href={'/sign-up'} >
-                                 Sign Up
-                              </Link>
-                           </Button>
-                        </li>
-                  </ul>
-               </nav>
-            </SheetContent>
-         </Sheet>
-
+         <div className='flex items-center gap-3' >
+            <UserDropdown />
+            <Sheet>
+               <SheetTrigger asChild >
+                  <Button variant={'ghost'} size={'icon'} >
+                     <MenuIcon />
+                  </Button>
+               </SheetTrigger>
+               <SheetContent side={'left'} >
+                  <nav className="py-10">
+                     <ul className='flex flex-col w-full items-center gap-5' >
+                        {navbarLinks.map((link) => (
+                           <li key={link.href} className='w-full' >
+                              <Button asChild
+                                 className='w-full' 
+                                 variant={isActive(pathname, link.href) ? 'outline' : 'ghost'} >
+                                 <Link href={link.href} >
+                                    {link.label}
+                                 </Link>
+                              </Button>
+                           </li>
+                        ))}
+                           <li>
+                              <Button 
+                                 variant={'outline'}
+                                 asChild
+                                 className='w-full'  >
+                                 <Link href={'/sign-in'} >
+                                    Sign In
+                                 </Link>
+                              </Button>
+                           </li>
+                           <li>
+                              <Button asChild
+                                 className='w-full'  >
+                                 <Link href={'/sign-up'} >
+                                    Sign Up
+                                 </Link>
+                              </Button>
+                           </li>
+                     </ul>
+                  </nav>
+               </SheetContent>
+            </Sheet>
+         </div>
       </nav>
    </>
   )

@@ -7,11 +7,14 @@ import { Button } from '@/components/ui/button'
 import NavbarMobile from './navbar-mobile'
 
 import { usePathname } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 import { navbarLinks, isActive} from '.'
+import UserDropdown from '../user-dropdown'
 
 const Navbar : React.FC = () => {
    const pathname = usePathname()
+   const { data: session ,status } = useSession()
 
   return (
    <>
@@ -38,8 +41,19 @@ const Navbar : React.FC = () => {
                         </Button>
                      </li>
                   ))}
+                     {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+                     {/* @ts-ignore */}
+                     {(status === 'authenticated' && session?.role === 'admin') &&
+                        <Button asChild 
+                           variant={isActive(pathname, '/dashboard') ? 'outline' : 'ghost'} >
+                           <Link href={'/dashboard'} >
+                              Dashboard
+                           </Link>
+                        </Button>
+                     }
                </ul>
 
+               {status !== 'authenticated' ? 
                <ul className="flex gap-2 items-center">
                   <li>
                      <Button 
@@ -60,6 +74,8 @@ const Navbar : React.FC = () => {
                      </Button>
                   </li>
                </ul>
+               : <UserDropdown />
+               }
             </nav>
             <div className="block md:hidden">
                <NavbarMobile />
