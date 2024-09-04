@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client'
 const prisma = new PrismaClient()
 
 async function main() {
+   // Create initial roles
    const adminRole = await prisma.role.upsert({
       where: { name: 'admin' },
       update: {},
@@ -27,6 +28,30 @@ async function main() {
       }
    })
    console.log({ adminRole, authorRole, userRole })
+   // create initial admin & author
+
+   const admin = await prisma.user.upsert({
+      where: { username: 'admin' },
+      update: {},
+      create: {
+         username: 'admin',
+         email: 'admin@admin.com',
+         password: '$2b$12$sHHxYCpjzwE6IgrYiPuvCetBG4QEQ0mYv/fuT208bAMIzwgJJaoUa', // admin
+         roleId: 'ADMIN'
+      }
+   })
+   const author = await prisma.user.upsert({
+      where: { username: 'author' },
+      update: {},
+      create: {
+         username: 'author',
+         email: 'author@author.com',
+         password: '$2b$12$usOYoRmyHXa/bkyXaeNvFeVtEGb4VmvaJwT.nXRWRzeM0rCng2yuq', // author
+         roleId: 'AUTHOR'
+      }
+   })
+
+   console.log({ admin, author })
 }
 
 main()
