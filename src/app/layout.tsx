@@ -12,6 +12,8 @@ export const metadata: Metadata = {
 import React from "react";
 import { ThemeProvider } from "@/components/common/theme-provider";
 import ProgressbarProvider from "@/components/common/progressbar-provider";
+import SessionProvider from "@/components/common/session-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function RootLayout({
   children,
@@ -26,16 +28,19 @@ export default function RootLayout({
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/>
       </head>
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-          >
-          <ProgressbarProvider>
-            {children}
-          </ProgressbarProvider>
-        </ThemeProvider>
+        <SessionProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+            >
+            <ProgressbarProvider>
+              {children}
+              <Toaster />
+            </ProgressbarProvider>
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );
