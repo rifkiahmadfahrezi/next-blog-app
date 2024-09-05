@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useMemo } from "react"
+import React, { useMemo, Suspense } from "react"
 import { 
    Table, 
    TableBody, 
@@ -30,12 +30,13 @@ export default function CategoriesTable() {
    const filteredCategories = useMemo(() => {
       return categories
       ?.filter(item => item.name.toLowerCase().includes(searchParams.get('search') || ''))
-   }, [searchParams.get('search'), categories])
+   }, [searchParams.get('search'), categories, searchParams])
 
    
 
    return (
    <>
+      <Suspense>
       <Card className="p-5">
          <AddCategory />
          <Table>
@@ -75,6 +76,7 @@ export default function CategoriesTable() {
             </TableCaption>
          </Table>
       </Card>
+      </Suspense>
    </>
    )
 }

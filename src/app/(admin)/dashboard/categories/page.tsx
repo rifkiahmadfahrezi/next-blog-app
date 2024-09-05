@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import type { Metadata } from 'next'
 
 import { SearchInput } from '@/components/common/search-input'
@@ -12,12 +12,14 @@ export const metadata : Metadata = {
 const CategoriesDashboardPage = () => {
   return (
    <>
+   <Suspense>
       <div className="flex my-7 justify-between">
          <h1 className="text-xl md:text-2xl font-medium">Blog Categories</h1>
 
-         <SearchInput />
+            <SearchInput />
       </div>
       <CategoriesTable />
+   </Suspense>
    </>
   )
 }
