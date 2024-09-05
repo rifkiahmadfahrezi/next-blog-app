@@ -15,7 +15,7 @@ const DashboardLayout = ({ children } : { children : React.ReactNode }) => {
       <Sidebar />
       <div>
         <DashboardNav />
-        <main className="container md:mx-auto my-7 px-4">
+        <main className="container mx-auto my-7 px-4">
           {children}
         </main>
       </div>
