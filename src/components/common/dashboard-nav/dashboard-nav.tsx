@@ -9,7 +9,7 @@ import UserDropdown from '../user-dropdown'
 const DashboardNav = () => {
   return (
    <>
-      <nav className='px-5 py-3 bg-card border-y flex justify-between items-center' >
+      <nav className='px-5 py-3 bg-card border-y flex justify-between items-center sticky top-0' >
          <div className="">
             <SidebarMobile />
          </div>

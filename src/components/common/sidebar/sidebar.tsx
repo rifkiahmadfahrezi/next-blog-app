@@ -4,14 +4,14 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-
+import { useSession } from 'next-auth/react'
 import { Button } from '@/components/ui/button'
 
-import { dashboardLinks } from '.'
+import { adminDashboardLinks, dashboardLinks } from '.'
 import { isMenuActive } from '.'
 
 const Sidebar = () => {
-
+   const { data: session } = useSession()
    const pathname = usePathname()
 
   return (
@@ -36,6 +36,21 @@ const Sidebar = () => {
                   </Link>
                </Button>
             ))}
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore */}
+            {session?.role === 'admin' && 
+               adminDashboardLinks.map(item => (
+                  <Button 
+                     key={item.href}
+                     asChild
+                     variant={isMenuActive(pathname, item.href) ? 'outline' : 'ghost'}
+                     >
+                     <Link href={item.href} >
+                        {item.label}
+                     </Link>
+                  </Button>
+               ))
+            }
          </nav>
       </aside>
    </>

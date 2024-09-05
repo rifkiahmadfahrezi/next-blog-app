@@ -9,7 +9,6 @@ import { signOut } from 'next-auth/react'
 
 const UserDropdown = () => {
    const { data: session } = useSession()
-   console.log(session)
    return (
    <>
       <DropdownMenu>

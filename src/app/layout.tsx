@@ -14,6 +14,7 @@ import { ThemeProvider } from "@/components/common/theme-provider";
 import ProgressbarProvider from "@/components/common/progressbar-provider";
 import SessionProvider from "@/components/common/session-provider";
 import { Toaster } from "@/components/ui/sonner";
+import QueryProvider from "@/components/common/query-provider";
 
 export default function RootLayout({
   children,
@@ -36,7 +37,9 @@ export default function RootLayout({
             disableTransitionOnChange
             >
             <ProgressbarProvider>
-              {children}
+              <QueryProvider>
+                {children}
+              </QueryProvider>
               <Toaster />
             </ProgressbarProvider>
           </ThemeProvider>

@@ -1,6 +1,10 @@
-export interface RegisterUser{
-   username: string
-   email: string
-   password: string
-   roleId: string
+export interface DBModel {
+   id: string | number
+   createdAt: string
+   updatedAt: string
+}
+
+export interface Category extends DBModel {
+   name: string
+   slug: string
 }

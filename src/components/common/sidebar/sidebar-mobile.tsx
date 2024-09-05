@@ -12,14 +12,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { MenuIcon } from 'lucide-react'
+import { useSession } from 'next-auth/react'
 
 
-import { dashboardLinks } from '.'
+import { dashboardLinks, adminDashboardLinks } from '.'
 import { isMenuActive } from '.'
  
 
 const SidebarMobile = () => {
    const pathname = usePathname()
+   const { data: session } = useSession()
 
   return (
    <>
@@ -48,11 +50,26 @@ const SidebarMobile = () => {
                   asChild
                   variant={isMenuActive(pathname, item.href) ? 'outline' : 'ghost'}
                   >
-               <Link href={item.href} >
-                  {item.label}
-               </Link>
+                  <Link href={item.href} >
+                     {item.label}
+                  </Link>
                </Button>
             ))}
+            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+            {/* @ts-ignore */}
+            {session?.role === 'admin' && 
+               adminDashboardLinks.map(item => (
+                  <Button 
+                     key={item.href}
+                     asChild
+                     variant={isMenuActive(pathname, item.href) ? 'outline' : 'ghost'}
+                     >
+                     <Link href={item.href} >
+                        {item.label}
+                     </Link>
+                  </Button>
+               ))
+            }
          </nav>
       </SheetContent>
    </Sheet>

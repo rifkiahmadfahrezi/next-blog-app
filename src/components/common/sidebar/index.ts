@@ -2,6 +2,7 @@ import Sidebar from "./sidebar";
 import SidebarMobile from "./sidebar-mobile";
 
 
+// (author & admin)
 export const dashboardLinks = [
    {
       label: 'Dashboard',
@@ -10,6 +11,26 @@ export const dashboardLinks = [
    {
       label: 'Blogs',
       href: '/dashboard/blogs'      
+   },
+   {
+      label: 'Categories',
+      href: '/dashboard/categories'      
+   },
+]
+
+// admin only
+export const adminDashboardLinks = [
+   {
+      label: 'Admins',
+      href: '/dashboard/admins'      
+   },
+   {
+      label: 'Authors',
+      href: '/dashboard/authors'      
+   },
+   {
+      label: 'Users',
+      href: '/dashboard/users'      
    },
 ]
 
