@@ -52,11 +52,13 @@ const UpdateCategory = ({ data } : { data : Category }) => {
 
    const { isPending, mutate } = useMutation({
       mutationFn: async (category : CategoryInput) => {
-         return toast.promise(updateCategory(category, data.id as string), {
+         const promise = updateCategory(category, data.id as string)
+         toast.promise(promise, {
             loading: 'Loading...',
             success: (data) => data.data.message || 'Category updated succesfuly',
             error: (data) => data?.response.data.message || 'Failed to update category'
          })
+         return promise
       },
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: ['categories'], refetchType: 'active' })

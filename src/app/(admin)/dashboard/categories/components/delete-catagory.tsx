@@ -25,11 +25,13 @@ const DeleteCatagory = ({ id } : { id: string }) => {
    const queryClient = useQueryClient()
    const { isPending, mutate } = useMutation({
       mutationFn: async (id : string) => {
-         return toast.promise(deleteCategory(id), {
+         const promise = deleteCategory(id)
+          toast.promise(promise, {
             loading: 'Deleting...',
             success: (data) => data.data.message || 'Category deleted succesfuly',
             error: (data) => data?.response.data.message || 'Failed to delete category'
          })
+         return promise
       },
       onSuccess: () => {
          queryClient.invalidateQueries({ queryKey: ['categories'], refetchType: 'active' })
