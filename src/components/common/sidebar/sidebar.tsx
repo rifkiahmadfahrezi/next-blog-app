@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 
 import { adminDashboardLinks, dashboardLinks } from '.'
 import { isMenuActive } from '.'
+import { cn } from '@/lib/utils'
 
 const Sidebar = () => {
    const { data: session } = useSession()
@@ -16,7 +17,7 @@ const Sidebar = () => {
 
   return (
    <>
-      <aside className="p-5 min-h-svh bg-card border-r hidden md:block">
+      <aside className="min-h-svh bg-card border-r hidden md:block">
          <Image 
             src={'/logo.svg'}
             width={150}
@@ -24,31 +25,31 @@ const Sidebar = () => {
             alt='Logo'
             className='mb-10 mt-5 mx-auto'
             />
-         <nav className="flex flex-col gap-2">
+         <nav className="flex flex-col gap-y-1">
             {dashboardLinks.map(item => (
-               <Button 
+               <Link 
+                  className={cn("p-3 pl-5 relative after:content-[''] after:inset-0 after:w-full after:h-full after:bg-primary/10 after:absolute after:scale-x-0 after:ease-in-out after:origin-right hover:after:scale-x-100 after:transition after:duration-200 hover:after:origin-left", 
+                     isMenuActive(pathname, item.href) && "bg-background border-y border-l-4 border-l-primary"
+                  )}
                   key={item.href}
-                  asChild 
-                  variant={isMenuActive(pathname, item.href) ? 'outline' : 'ghost'}
-                  >
-                  <Link href={item.href} >
+                  href={item.href} >
+                  <span className="relative z-10">
                      {item.label}
-                  </Link>
-               </Button>
+                  </span>
+               </Link>
             ))}
-            {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-            {/* @ts-ignore */}
             {session?.role === 'admin' && 
                adminDashboardLinks.map(item => (
-                  <Button 
+                  <Link 
+                     className={cn("p-3 pl-5 relative after:content-[''] after:inset-0 after:w-full after:h-full after:bg-primary/10 after:absolute after:scale-x-0 after:ease-in-out after:origin-right hover:after:scale-x-100 after:transition after:duration-200 hover:after:origin-left", 
+                        isMenuActive(pathname, item.href) && "bg-background border-y border-l-4 border-l-primary"
+                     )}
                      key={item.href}
-                     asChild
-                     variant={isMenuActive(pathname, item.href) ? 'outline' : 'ghost'}
-                     >
-                     <Link href={item.href} >
+                     href={item.href} >
+                     <span className="relative z-10">
                         {item.label}
-                     </Link>
-                  </Button>
+                     </span>
+                  </Link>
                ))
             }
          </nav>
