@@ -61,6 +61,7 @@ model Blog{
   readingTime Int
   content String
   categoryId String
+  isPublished Boolean
   category Category @relation(fields: [categoryId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
