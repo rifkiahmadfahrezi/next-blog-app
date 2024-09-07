@@ -41,16 +41,15 @@ const Navbar : React.FC = () => {
                         </Button>
                      </li>
                   ))}
-                     {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
-                     {/* @ts-ignore */}
-                     {(status === 'authenticated' && session?.role === 'admin') &&
-                        <Button asChild 
-                           variant={isActive(pathname, '/dashboard') ? 'outline' : 'ghost'} >
-                           <Link href={'/dashboard'} >
-                              Dashboard
-                           </Link>
-                        </Button>
-                     }
+                  {(status === 'authenticated' 
+                     && (session?.role?.toString() === 'admin' || session?.role?.toString() === 'author')) &&
+                     <Button asChild 
+                        variant={isActive(pathname, '/dashboard') ? 'outline' : 'ghost'} >
+                        <Link href={'/dashboard'} >
+                           Dashboard
+                        </Link>
+                     </Button>
+                  }
                </ul>
 
                {status !== 'authenticated' ? 
