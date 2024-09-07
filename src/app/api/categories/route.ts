@@ -66,6 +66,16 @@ export async function POST(req : NextRequest) {
 }
 
 export async function DELETE(req:NextRequest) {
+   // check client role
+   const token = await getToken({ req })
+
+   if(!token || (token?.role !== 'admin' && token?.role !== 'author')){
+      return NextResponse.json({
+         status: false,
+         message: `Unauthorized`
+      }, { status: 401 })
+   }
+
    const url = new URL(req.url).searchParams
    const id = url.get('id')
 
@@ -107,6 +117,16 @@ export async function DELETE(req:NextRequest) {
 }
 
 export async function PUT(req:NextRequest) {
+   // check client role
+   const token = await getToken({ req })
+
+   if(!token || (token?.role !== 'admin' && token?.role !== 'author')){
+      return NextResponse.json({
+         status: false,
+         message: `Unauthorized`
+      }, { status: 401 })
+   }
+
    const url = new URL(req.url).searchParams
    const id = url.get('id')
    const { name } = await req.json()
