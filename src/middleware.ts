@@ -22,6 +22,17 @@ export default async function middleware(req: NextRequest){
       }
       return redirectTo('/')
    }
+
+   if (
+      pathname.startsWith('/dashboard/users') || 
+      pathname.startsWith('/dashboard/authors') || 
+      pathname.startsWith('/dashboard/admins')
+   ) {
+      if (session?.role !== 'admin') {
+         return redirectTo('/dashboard')
+      }
+   }
+   
 }
 
 export const config = {
