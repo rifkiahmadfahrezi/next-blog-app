@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Metadata } from 'next'
 import type { Blog } from '@/lib/types'
 import ShareButton from '@/components/common/share-button'
+import CTA from '@/components/common/cta'
 
 interface Props { params: { slug: string} }
 
@@ -69,6 +70,7 @@ const BlogOpenPage = async ({ params } : Props) => {
             </div>
           </div>
         </div>
+        <CTA />
     </>
   )
 }
