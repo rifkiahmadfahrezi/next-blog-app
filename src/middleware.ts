@@ -12,25 +12,37 @@ export default async function middleware(req: NextRequest){
       return redirectTo('/')
    }
 
+   if (
+      pathname.startsWith('/blogs/write') || 
+      pathname.startsWith('/blogs/preview') || 
+      pathname.startsWith('/blogs/update') 
+   ) {
+      if (session?.role !== 'admin' && session?.role !== 'author') {
+         return redirectTo('/blogs')
+      }
+   }
+
+
    // if client access dashboard page
    if(pathname.startsWith('/dashboard')){
       // check login status
       if(!session) return redirectTo('/')
       // check role
       if(session?.role === 'admin' || session?.role === 'author'){
+
+         if (
+            pathname.startsWith('/dashboard/users') || 
+            pathname.startsWith('/dashboard/authors') || 
+            pathname.startsWith('/dashboard/admins')
+         ) {
+            if (session?.role !== 'admin') {
+               return redirectTo('/dashboard')
+            }
+         }
+
          return NextResponse.next()
       }
       return redirectTo('/')
-   }
-
-   if (
-      pathname.startsWith('/dashboard/users') || 
-      pathname.startsWith('/dashboard/authors') || 
-      pathname.startsWith('/dashboard/admins')
-   ) {
-      if (session?.role !== 'admin') {
-         return redirectTo('/dashboard')
-      }
    }
    
 }
@@ -41,5 +53,6 @@ export const config = {
       "/dashboard",
       "/sign-in",
       "/sign-up",
+      "/blogs"
    ],
  }

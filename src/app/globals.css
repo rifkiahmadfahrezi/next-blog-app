@@ -94,5 +94,5 @@
   @apply transition-all duration-300;
 }
 .focus-card-container:hover .focus-card:not(.focus-card:hover) {
-  @apply md:blur-sm md:grayscale md:opacity-75;
+  @apply  md:opacity-50;
 }

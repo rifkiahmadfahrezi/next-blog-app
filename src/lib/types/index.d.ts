@@ -20,3 +20,18 @@ export interface User extends DBModel {
    roleId: string
    role?: Role
 }
+
+export interface Blog extends DBModel{
+   id: string;
+   title: string;
+   slug: string;
+   thumbnail: string;
+   introduction: string;
+   readingTime: number;
+   content: string;
+   categoryId: string;
+   isPublished: boolean;
+   userId: string;
+   user: User
+   category: Category
+}

@@ -65,9 +65,11 @@ const authOption : NextAuthOptions = {
    },
    callbacks: {
       async jwt({token, user}){
-         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-         // @ts-ignore
-         if(user) token.role = user.role
+         if(user) {
+            // @ts-ignore
+            token.role = user.role
+            token.id = user.id
+         }
          return token
       },
       async session({session, token}){
