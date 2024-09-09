@@ -22,15 +22,15 @@ const HeroSection = () => {
           </article>
 
           <div className="grid grid-cols-3 border-t">
-            <div className="border-r border-l p-5">
+            <div className="border-r border-l  px-6 py-10">
                 <p className='text-xl md:text-2xl'>300<span className='text-primary'>+</span></p>
                 <h1 className='text-muted-foreground' >Resources available</h1>
             </div>
-            <div className="border-r p-5">
+            <div className="border-r  px-6 py-10">
                 <p className='text-xl md:text-2xl'>12k<span className='text-primary'>+</span></p>
                 <h1 className='text-muted-foreground' >Total Downloads</h1>
             </div>
-            <div className="p-5">
+            <div className=" px-6 py-10">
                 <p className='text-xl md:text-2xl'>10k<span className='text-primary'>+</span></p>
                 <h1 className='text-muted-foreground' >Active Users</h1>
             </div>
@@ -52,7 +52,7 @@ const HeroSection = () => {
             <Card className='rounded-full p-2 bg-background opacity-100 flex max-w-fit' >
               {Array(4).fill(0).map((_, i) => (
                 <Avatar key={i} className='border -ml-1' >
-                  <AvatarImage src="https://github.com/shadcn.png" />
+                  <AvatarImage src={`https://avatar.iran.liara.run/public/${i+1}`} />
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
               ))}

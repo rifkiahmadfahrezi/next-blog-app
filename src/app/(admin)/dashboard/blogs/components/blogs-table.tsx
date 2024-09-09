@@ -114,8 +114,11 @@ export default function BlogsTable({ published } : { published: boolean }) {
                      <TableCell className="flex gap-2" >
                         <Button asChild 
                            size={'icon'}
-                           variant={'ghost'} >
-                           <Link href={`/dashboard/blogs/${item.slug}`}>
+                           variant={'ghost'}
+                           >
+                           <Link 
+                              target="_blank"
+                              href={`/blogs/update/${item.slug}`}>
                               <PencilIcon className="size-5" />
                            </Link>
                         </Button>

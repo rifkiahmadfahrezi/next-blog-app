@@ -12,7 +12,7 @@ export async function GET(req:NextRequest, { params }: { params: { slug: string 
    let blogs
 
    // if client accest drafted blogs
-   if(isPublished && JSON.parse(isPublished) === false){
+   if(isPublished && isPublished === 'false'){
 
       // check client role
       if(!token || (token?.role !== 'admin' && token?.role !== 'author')){
@@ -41,9 +41,9 @@ export async function GET(req:NextRequest, { params }: { params: { slug: string 
          },
       })
 
-   }else{
+   }else if(isPublished === 'true'){
       blogs = await prisma.blog.findFirst({
-         where: { slug, isPublished: true },
+         where: { slug , isPublished: true},
          select: {
             id: true,
             title: true,
@@ -59,7 +59,32 @@ export async function GET(req:NextRequest, { params }: { params: { slug: string 
             content: true,
          },
       })
-
+   }else{
+      // check client role
+      if(!token || (token?.role !== 'admin' && token?.role !== 'author')){
+         return NextResponse.json({
+            status: false,
+            message: `Unauthorized`
+         }, { status: 401 })
+      }
+      blogs = await prisma.blog.findFirst({
+         where: { slug },
+         select: {
+            id: true,
+            title: true,
+            slug: true,
+            createdAt: true,
+            updatedAt: true,
+            introduction: true,
+            isPublished: true,
+            category: true,
+            readingTime: true,
+            thumbnail: true,
+            user: true,
+            content: true,
+         },
+      })
+     
    }
 
 

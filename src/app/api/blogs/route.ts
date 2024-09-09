@@ -8,7 +8,6 @@ import { getReadingTime } from "@/lib/utils";
 
 export async function GET(req: NextRequest) {
    const url = req.nextUrl
-   const keyword = url.searchParams.get('search')
    const isPublished = url.searchParams.get('published') || 'true'
    const token = await getToken({ req })
 
@@ -193,7 +192,6 @@ export async function PUT(req: NextRequest) {
       categoryId,
       content,
       userId,
-      isPublished,
    } = await req.json()
 
    // check if category exist
@@ -242,7 +240,6 @@ export async function PUT(req: NextRequest) {
          categoryId,
          content,
          userId,
-         isPublished,
          readingTime: getReadingTime(content),
          slug: slug(title),
          updatedAt: new Date().toISOString()
