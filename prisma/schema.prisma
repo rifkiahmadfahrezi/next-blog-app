@@ -6,6 +6,7 @@
 
 generator client {
   provider = "prisma-client-js"
+  previewFeatures = ["fullTextSearch", "fullTextIndex"]
 }
 
 datasource db {
@@ -31,6 +32,7 @@ model User{
   profile Profile?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  Blogs Blog[]
 }
 model Profile{
   id String @id @default(uuid())
@@ -62,6 +64,8 @@ model Blog{
   content String
   categoryId String
   isPublished Boolean
+  userId String
+  user User @relation(fields: [userId], references: [id])
   category Category @relation(fields: [categoryId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
