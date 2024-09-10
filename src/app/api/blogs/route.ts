@@ -40,7 +40,7 @@ export async function GET(req: NextRequest) {
             user: true
          },
          orderBy: {
-            updatedAt: 'asc'
+            updatedAt: 'desc'
          }
       })
 
@@ -61,7 +61,7 @@ export async function GET(req: NextRequest) {
             user: true
          },
          orderBy: {
-            updatedAt: 'asc'
+            updatedAt: 'desc'
          }
       })
 
