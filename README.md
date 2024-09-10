@@ -15,7 +15,3 @@ Simple blog web application, built with NextJS, typescript, prisma, react-query,
 - **Server:** NextJS API routes, Prisma, PostgreSQL(Supabase)
 
 
-## Authors
-
-- [@rifkiahmadfahrezi](https://www.github.com/rifkiahmadfahrezi)
-
