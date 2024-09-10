@@ -6,10 +6,13 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-
 export function getReadingTime(
   text: string, 
-  wpm :number = 225,
+  wpm :number = 200,
 ){
-  return convert(text).length / wpm 
+  const base64ImagePattern = /<img[^>]+src="data:image\/[^;]+;base64[^"]*"[^>]*>/g
+  const textWithoutImages = text.replace(base64ImagePattern, '')
+  const plainText = convert(textWithoutImages)
+  
+  return plainText.split(' ').length / wpm
 }
