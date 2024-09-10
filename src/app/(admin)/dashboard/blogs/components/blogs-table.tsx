@@ -94,7 +94,7 @@ export default function BlogsTable({ published } : { published: boolean }) {
                      <TableCell>
                         {
                            // @ts-ignore
-                           (session?.email === item.user.email || session?.role === 'admin')
+                           (session?.user.email === item.user.email || session?.role === 'admin')
                            ? <BlogVisibilityDropdown blog={item} />
                            : item.isPublished ? <Badge>Published</Badge> : <Badge variant={'outline'}>drafted</Badge>
                         }
