@@ -69,13 +69,12 @@ const UpdateForm = ({ slug } : { slug: string }) => {
    
    // Reset the form values with blog data once loaded
    useEffect(() => {
-      console.log(blog)
       if (blog) {
          form.reset({
             title: blog?.title || '', 
             thumbnail: blog?.thumbnail || '', 
             introduction: blog?.introduction || '',  
-            categoryId: blog?.categoryId || '', 
+            categoryId: blog?.category.id as string || '', 
             content: blog?.content || ''
          })
       }
@@ -90,7 +89,7 @@ const UpdateForm = ({ slug } : { slug: string }) => {
       setIsPending(true)
       const data: BlogInput = { 
          ...values, 
-         isPublished
+         isPublished: blog?.isPublished || false
       }
 
       try {
@@ -100,9 +99,6 @@ const UpdateForm = ({ slug } : { slug: string }) => {
          }
          
          const res = await updateblog(data, blog.id)
-         if (res.status !== 201) {
-            throw new Error('An error occurred')
-         }
 
          router.replace('/dashboard/blogs')
          toast.success(res.data?.message || 'Blog updated successfully')
