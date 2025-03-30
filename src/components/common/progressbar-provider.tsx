@@ -1,14 +1,14 @@
 'use client'
 
 import React from 'react'
-import { AppProgressBar } from "next-nprogress-bar"
+import { ProgressProvider } from '@bprogress/next/app'
 
 const ProgressbarProvider = ({ children } : { children: React.ReactNode }) => {
   return (
    <>
       
       {children}
-      <AppProgressBar 
+      <ProgressProvider 
          color='#FFD11A'
          height='4px'
          shallowRouting
