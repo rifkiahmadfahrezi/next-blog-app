@@ -3,7 +3,7 @@
 import React from 'react'
 import { ProgressProvider } from '@bprogress/next/app'
 
-const ProgressbarProvider = ({ children } : { children: React.ReactNode }) => {
+export const ProgressbarProvider = ({ children } : { children: React.ReactNode }) => {
   return (
    <>
       
@@ -17,5 +17,3 @@ const ProgressbarProvider = ({ children } : { children: React.ReactNode }) => {
    </>
   )
 }
-
-export default ProgressbarProvider

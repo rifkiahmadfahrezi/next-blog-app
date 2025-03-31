@@ -12,19 +12,19 @@ import {
    TableHeader,
    TableRow 
 } from "@/components/ui/table"
-import { USER_ROLE_ID } from '@/lib/contants'
+import { ADMIN_ROLE_ID } from '@/lib/contants'
 import { getAllUsers } from '@/services/users'
 
-import RoleDropdown from '@/components/common/role-dropdown'
+import RoleDropdown from '@/components/features/role/role-dropdown'
 import { useSearchParams } from 'next/navigation'
-import DeleteUser from './delete-user'
+import DeleteUser from '../user/delete-user'
 
-const UsersTable = () => {
+const AdminsTable = () => {
    const searchParams = useSearchParams()
    const keyword : string = searchParams.get('search') || ''
    const { data : users, isLoading } = useQuery({
-      queryKey: ['users'],
-      queryFn: () => getAllUsers(USER_ROLE_ID)
+      queryKey: ['admins'],
+      queryFn: () => getAllUsers(ADMIN_ROLE_ID)
    })
 
    const filteredUsers = useMemo(() => {
@@ -56,14 +56,14 @@ const UsersTable = () => {
                         <RoleDropdown user={item} />
                      </TableCell>
                      <TableCell>
-                        <DeleteUser id={item.id.toString()} queryKey={['users']} />
+                        <DeleteUser id={item.id.toString()} queryKey={['admins']} />
                      </TableCell>
                   </TableRow>
                ))}
             </TableBody>
             <TableCaption>
                {!searchParams.get('search')
-                  ? <p>List of users ({users?.length || 0} items)</p>
+                  ? <p>List of admins ({users?.length || 0} items)</p>
                   : <p>Result for &ldquo;{keyword}&rdquo; ({filteredUsers?.length || 0} items)</p>
                }
             </TableCaption>
@@ -73,4 +73,4 @@ const UsersTable = () => {
   )
 }
 
-export default UsersTable
+export default AdminsTable

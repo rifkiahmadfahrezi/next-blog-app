@@ -4,9 +4,9 @@ import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 
 
-export async function GET(req:NextRequest, { params }: { params: { slug: string } }) {
+export async function GET(req:NextRequest, { params }: { params: Promise<{ slug: string }> }) {
    const token = await getToken({ req })
-   const { slug } = params
+   const { slug } = await params
    const isPublished = req.nextUrl.searchParams.get('published') || 'true'
 
    let blogs

@@ -1,4 +1,1 @@
-import DashboardNav from "./dashboard-nav";
-
-
-export { DashboardNav }
+export * from './dashboard-nav'

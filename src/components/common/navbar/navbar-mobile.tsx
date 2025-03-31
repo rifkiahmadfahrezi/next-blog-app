@@ -12,11 +12,13 @@ import {
    SheetContent,
    SheetTrigger,
  } from "@/components/ui/sheet"
- import UserDropdown from '../user-dropdown'
+ import UserDropdown from '@/components/features/user/user-dropdown'
+ import { useSession } from 'next-auth/react'
  
 
 const NavbarMobile = () => {
    const pathname = usePathname()
+   const { data : session} = useSession()
 
   return (
    <>
@@ -31,7 +33,11 @@ const NavbarMobile = () => {
          </Link>
 
          <div className='flex items-center gap-3' >
-            <UserDropdown />
+            {
+               session?.user && (
+                  <UserDropdown />
+               )
+            }
             <Sheet>
                <SheetTrigger asChild >
                   <Button variant={'ghost'} size={'icon'} >

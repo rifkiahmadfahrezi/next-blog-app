@@ -24,7 +24,7 @@ import type { Blog } from '@/lib/types'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
-import { Button } from '../ui/button'
+import { Button } from '../../ui/button'
 import { chageBlogVisibility } from '@/services/blogs'
 import { toast } from 'sonner'
 

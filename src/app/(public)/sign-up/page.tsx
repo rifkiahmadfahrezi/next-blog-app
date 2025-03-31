@@ -7,7 +7,7 @@ import {
    CardTitle,
    CardFooter
 } from '@/components/ui/card'
-import SignupForm from './components/signup-form'
+import SignupForm from '@/components/features/sign-up/signup-form'
 
 import type { Metadata } from 'next'
 import Link from 'next/link'

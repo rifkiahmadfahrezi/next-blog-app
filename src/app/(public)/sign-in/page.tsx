@@ -7,7 +7,7 @@ import {
    CardFooter,
    CardTitle 
 } from '@/components/ui/card'
-import SigninForm from './components/signin-form'
+import SigninForm from '@/components/features/sign-in/signin-form'
 
 import type { Metadata } from 'next'
 import Image from 'next/image'

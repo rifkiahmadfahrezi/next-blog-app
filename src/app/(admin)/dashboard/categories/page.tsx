@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 
 import { SearchInput } from '@/components/common/search-input'
 
-import CategoriesTable from './components/categories-table'
+import CategoriesTable from '@/components/features/category/categories-table'
 
 export const metadata : Metadata = {
    title: 'Categories - dashboard FutureTech'

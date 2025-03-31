@@ -2,7 +2,7 @@
 import React from 'react'
 
 import { Button } from '@/components/ui/button'
-import { ArrowUpRightIcon, Share2Icon } from 'lucide-react'
+import { ArrowUpRightIcon } from 'lucide-react'
 import Image from 'next/image'
 import { useQuery } from '@tanstack/react-query'
 import Link from 'next/link'
@@ -26,8 +26,9 @@ const BlogList = () => {
                   <BlogCard key={i}/>
                ))}
                {!isLoading && blogs?.map((item, i) => (
-                  <div key={i}  className="focus-card">
+                  <div key={i}  className="focus-card group">
                      <figure className='aspect-video overflow-hidden rounded-md' >
+                     <Link href={`/blogs/${item.slug}`} >
                         <Image 
                            src={item.thumbnail}
                            alt='Blog thumbnail'
@@ -35,9 +36,18 @@ const BlogList = () => {
                            height={300}
                            className='h-auto w-auto object-cover'
                            />
+                        <span className="sr-only">
+                           {item.title}
+                        </span>
+                        </Link>
                      </figure>
                      <figcaption className='mt-4' >
-                        <h1 className="text-xl md:text-2xl font-medium line-clamp-2 ">{item.title}</h1>
+
+                        <h1 className="text-xl md:text-2xl font-medium line-clamp-2 group-hover:underline">
+                           <Link href={`/blogs/${item.slug}`} >
+                              {item.title}
+                           </Link>
+                        </h1>
                         <p className='text-muted-foreground' >{item.category.name}</p>
 
                         <div className="mt-5 flex items-center justify-between">

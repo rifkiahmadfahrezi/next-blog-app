@@ -22,7 +22,7 @@ import {
    SelectContent, 
    SelectItem 
 } from '@/components/ui/select'
-import TextEditor from '@/components/common/text-editor'
+import { Editor } from '@/components/common/editor/text-editor'
 import { useSession } from 'next-auth/react'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from 'sonner'
@@ -164,7 +164,11 @@ const BlogForm = () => {
                   <FormItem>
                    <FormLabel>Content</FormLabel>
                      <FormControl>
-                        <TextEditor {...field} />
+                        <Editor
+                           value={field.value}
+                           placeholder="Your bio here"
+                           onContentChange={(content) => field.onChange(content)}
+                        />
                      </FormControl> 
                   <FormMessage />
                   </FormItem>

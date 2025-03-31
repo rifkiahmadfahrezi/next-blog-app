@@ -21,7 +21,7 @@ import {
    SelectContent, 
    SelectItem 
 } from '@/components/ui/select'
-import TextEditor from '@/components/common/text-editor'
+import { Editor } from '@/components/common/editor/text-editor'
 import { Textarea } from '@/components/ui/textarea'
 import { toast } from 'sonner'
 import { BlogInput, updateblog } from '@/services/blogs'
@@ -195,7 +195,11 @@ const UpdateForm = ({ slug } : { slug: string }) => {
                      <FormItem>
                         <FormLabel>Content</FormLabel>
                         <FormControl>
-                           <TextEditor {...field} />
+                           <Editor
+                              value={field.value}
+                              placeholder="Your bio here"
+                              onContentChange={(content) => field.onChange(content)}
+                           />
                         </FormControl>
                         <FormMessage />
                      </FormItem>

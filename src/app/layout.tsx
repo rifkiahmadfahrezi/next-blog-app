@@ -10,11 +10,8 @@ export const metadata: Metadata = {
 };
 
 import React from "react";
-import { ThemeProvider } from "@/components/common/theme-provider";
-import ProgressbarProvider from "@/components/common/progressbar-provider";
-import SessionProvider from "@/components/common/session-provider";
+import { ThemeProvider, ProgressbarProvider, QueryProvider, SessionProvider } from "@/components/providers";
 import { Toaster } from "@/components/ui/sonner";
-import QueryProvider from "@/components/common/query-provider";
 
 export default function RootLayout({
   children,

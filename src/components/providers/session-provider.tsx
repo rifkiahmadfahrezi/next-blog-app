@@ -5,7 +5,7 @@ import { SessionProvider as NextAuthSessionProvider } from 'next-auth/react'
 
 import React from 'react'
 
-const SessionProvider = ({ children } : { children : React.ReactNode}) => {
+export const SessionProvider = ({ children } : { children : React.ReactNode}) => {
   return (
    <>
       <NextAuthSessionProvider>
@@ -14,5 +14,3 @@ const SessionProvider = ({ children } : { children : React.ReactNode}) => {
    </>
   )
 }
-
-export default SessionProvider

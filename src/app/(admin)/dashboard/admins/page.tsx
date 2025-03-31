@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import type { Metadata } from 'next'
-import AdminsTable from './components/admins-table'
+import AdminsTable from '@/components/features/admin/admins-table'
 import { SearchInput } from '@/components/common/search-input'
 
 export const metadata: Metadata = {

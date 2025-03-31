@@ -24,7 +24,7 @@ import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import DeleteBlog from "./delete-blog"
 import { PencilIcon, PlusIcon } from "lucide-react"
-import BlogVisibilityDropdown from "@/components/common/blog-visibility-dropdown"
+import BlogVisibilityDropdown from "@/components/features/blog/blog-visibility-dropdown"
 import { useSession } from "next-auth/react"
 import { Badge } from "@/components/ui/badge"
 
@@ -52,7 +52,7 @@ export default function BlogsTable({ published } : { published: boolean }) {
          <Button asChild className="mb-6" >
             <Link 
                target="_blank"
-               href={`/blogs/write`}>
+               href={`/dashboard/blogs/write`}>
                <PlusIcon className="size-5 mr-2" />
                <span>Write blog</span>
             </Link>
@@ -130,7 +130,7 @@ export default function BlogsTable({ published } : { published: boolean }) {
                               >
                               <Link 
                                  target="_blank"
-                                 href={`/blogs/update/${item.slug}`}>
+                                 href={`/dashboard/blogs/update/${item.slug}`}>
                                  <PencilIcon className="size-5" />
                               </Link>
                            </Button>

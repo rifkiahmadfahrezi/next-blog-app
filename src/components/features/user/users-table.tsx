@@ -12,19 +12,19 @@ import {
    TableHeader,
    TableRow 
 } from "@/components/ui/table"
-import { AUTHOR_ROLE_ID } from '@/lib/contants'
+import { USER_ROLE_ID } from '@/lib/contants'
 import { getAllUsers } from '@/services/users'
 
-import RoleDropdown from '@/components/common/role-dropdown'
+import RoleDropdown from '@/components/features/role/role-dropdown'
 import { useSearchParams } from 'next/navigation'
-import DeleteUser from '../../users/components/delete-user'
+import DeleteUser from './delete-user'
 
-const AuthorsTable = () => {
+const UsersTable = () => {
    const searchParams = useSearchParams()
    const keyword : string = searchParams.get('search') || ''
    const { data : users, isLoading } = useQuery({
-      queryKey: ['authors'],
-      queryFn: () => getAllUsers(AUTHOR_ROLE_ID)
+      queryKey: ['users'],
+      queryFn: () => getAllUsers(USER_ROLE_ID)
    })
 
    const filteredUsers = useMemo(() => {
@@ -54,17 +54,16 @@ const AuthorsTable = () => {
                      <TableCell>{item.email}</TableCell>
                      <TableCell>
                         <RoleDropdown user={item} />
-                        {/* <Badge variant={'outline'} >{item.role?.name || 'unkown'}</Badge> */}
                      </TableCell>
                      <TableCell>
-                        <DeleteUser id={item.id.toString()} queryKey={['authors']} />
+                        <DeleteUser id={item.id.toString()} queryKey={['users']} />
                      </TableCell>
                   </TableRow>
                ))}
             </TableBody>
             <TableCaption>
                {!searchParams.get('search')
-                  ? <p>List of Authors ({users?.length || 0} items)</p>
+                  ? <p>List of users ({users?.length || 0} items)</p>
                   : <p>Result for &ldquo;{keyword}&rdquo; ({filteredUsers?.length || 0} items)</p>
                }
             </TableCaption>
@@ -74,4 +73,4 @@ const AuthorsTable = () => {
   )
 }
 
-export default AuthorsTable
+export default UsersTable

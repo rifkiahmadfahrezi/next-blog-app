@@ -3,10 +3,10 @@ import Link from 'next/link'
 import { SidebarMobile } from '../sidebar'
 import { Button } from '@/components/ui/button'
 
-import UserDropdown from '../user-dropdown'
+import UserDropdown from '../../features/user/user-dropdown'
 
 
-const DashboardNav = () => {
+export const DashboardNav = () => {
   return (
    <>
       <nav className='px-5 py-3 bg-card border-y flex justify-between items-center sticky top-0' >
@@ -28,5 +28,3 @@ const DashboardNav = () => {
    </>
   )
 }
-
-export default DashboardNav

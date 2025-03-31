@@ -1,6 +1,6 @@
 import React from "react"
 import { Navbar } from "@/components/common/navbar"
-import Infobar from "@/components/common/infobar"
+import Infobar from "@/components/features/infobar/infobar"
 import { Footer } from "@/components/common/footer"
 
 const PublicLayout = ({ children } : { children : React.ReactNode }) => {

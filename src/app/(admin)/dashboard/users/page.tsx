@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react'
 import type { Metadata } from 'next'
-import UsersTable from './components/users-table'
+import UsersTable from '@/components/features/user/users-table'
 import { SearchInput } from '@/components/common/search-input'
 
 export const metadata: Metadata = {

@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { SearchInput } from '@/components/common/search-input'
 
-import BlogsTable from './components/blogs-table'
+import BlogsTable from '@/components/features/blog/blogs-table'
 
 export const metadata : Metadata = {
    title: 'Blogs - dashboard FutureTech'

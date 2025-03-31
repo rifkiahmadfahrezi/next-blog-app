@@ -1,17 +1,18 @@
 import React from 'react'
 
 import Image from 'next/image'
-import { Share2Icon } from 'lucide-react'
-import { Button } from '@/components/ui/button'
 import { Metadata } from 'next'
 import type { Blog } from '@/lib/types'
 import ShareButton from '@/components/common/share-button'
 import CTA from '@/components/common/cta'
 
-interface Props { params: { slug: string} }
+interface Props { params: Promise<{ slug: string}> }
+
+export const revalidate = 10
 
 const BlogOpenPage = async ({ params } : Props) => {
-  const blog : Blog = await fetchBlogBySlug(params.slug)
+  const slug = (await params).slug
+  const blog : Blog = await fetchBlogBySlug(slug)
   return (
     <>
       <figure className="w-full max-h-[400px] mx-auto overflow-hidden relative after:content-[''] after:absolute after:inset-0 after:w-full after:h-full after:bg-gradient-to-t after:from-background after:to-transparent border-b mb-10" >
@@ -83,7 +84,8 @@ async function fetchBlogBySlug(slug: string){
 
 
 export async function generateMetadata({ params } : Props) : Promise<Metadata> {
-  const blog : Blog = await fetchBlogBySlug(params.slug)
+  const slug = (await params).slug
+  const blog : Blog = await fetchBlogBySlug(slug)
   return {
     title: blog.title + ' - FutureTech blogs',
     keywords: blog.title,

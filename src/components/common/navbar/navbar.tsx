@@ -10,7 +10,7 @@ import { usePathname } from 'next/navigation'
 import { useSession } from 'next-auth/react'
 
 import { navbarLinks, isActive} from '.'
-import UserDropdown from '../user-dropdown'
+import UserDropdown from '../../features/user/user-dropdown'
 
 const Navbar : React.FC = () => {
    const pathname = usePathname()

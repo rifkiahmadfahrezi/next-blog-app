@@ -12,19 +12,19 @@ import {
    TableHeader,
    TableRow 
 } from "@/components/ui/table"
-import { ADMIN_ROLE_ID } from '@/lib/contants'
+import { AUTHOR_ROLE_ID } from '@/lib/contants'
 import { getAllUsers } from '@/services/users'
 
-import RoleDropdown from '@/components/common/role-dropdown'
+import RoleDropdown from '@/components/features/role/role-dropdown'
 import { useSearchParams } from 'next/navigation'
-import DeleteUser from '../../users/components/delete-user'
+import DeleteUser from '../user/delete-user'
 
-const AdminsTable = () => {
+const AuthorsTable = () => {
    const searchParams = useSearchParams()
    const keyword : string = searchParams.get('search') || ''
    const { data : users, isLoading } = useQuery({
-      queryKey: ['admins'],
-      queryFn: () => getAllUsers(ADMIN_ROLE_ID)
+      queryKey: ['authors'],
+      queryFn: () => getAllUsers(AUTHOR_ROLE_ID)
    })
 
    const filteredUsers = useMemo(() => {
@@ -54,16 +54,17 @@ const AdminsTable = () => {
                      <TableCell>{item.email}</TableCell>
                      <TableCell>
                         <RoleDropdown user={item} />
+                        {/* <Badge variant={'outline'} >{item.role?.name || 'unkown'}</Badge> */}
                      </TableCell>
                      <TableCell>
-                        <DeleteUser id={item.id.toString()} queryKey={['admins']} />
+                        <DeleteUser id={item.id.toString()} queryKey={['authors']} />
                      </TableCell>
                   </TableRow>
                ))}
             </TableBody>
             <TableCaption>
                {!searchParams.get('search')
-                  ? <p>List of admins ({users?.length || 0} items)</p>
+                  ? <p>List of Authors ({users?.length || 0} items)</p>
                   : <p>Result for &ldquo;{keyword}&rdquo; ({filteredUsers?.length || 0} items)</p>
                }
             </TableCaption>
@@ -73,4 +74,4 @@ const AdminsTable = () => {
   )
 }
 
-export default AdminsTable
+export default AuthorsTable

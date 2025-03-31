@@ -1,7 +1,7 @@
 import React from 'react'
 import type { Metadata } from 'next'
 
-import BlogList from './components/blog-list'
+import BlogList from '@/components/features/blog/blog-list'
 
 export const metadata : Metadata = {
   title: 'Blogs'
